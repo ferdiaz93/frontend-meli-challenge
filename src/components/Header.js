@@ -1,40 +1,22 @@
-import React, { useState } from 'react'
-import axios from 'axios'
-import useProductsData from '../hooks/useProductsData'
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
     const [valueInput, setValueInput] = useState('');
-    const { setProducts } = useProductsData();
+    let navigate = useNavigate();
+    
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search)
+        if(params.get('search') !== null) {
+            setValueInput(params.get('search'));
+        }
+    },[])
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        requestProducts(valueInput)
+        navigate(`/items?search=${valueInput}`);
     }
 
-    const requestProducts = async (valueParam) => {
-        const { data } = await axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=${valueParam}`);
-        const customResponse = {
-            items: data.results.map(item => ({
-                id: item.id,
-                title: item.title,
-                price: {
-                    currency: item.currency_id,
-                    amount: item.price,
-                    decimals: "50"
-                },
-                picture: item.thumbnail,
-                condition: item.condition,
-                free_shipping: item.shipping.free_shipping,
-                location: item.address.city_name
-            })),
-            author:{
-                name: "Pedro",
-                lastname: "Perez"
-            },
-            categories: ["muebles"],
-        }
-        setProducts(customResponse);
-    }
     return (
         <header>
             <div className="logo-container">
