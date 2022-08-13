@@ -1,34 +1,39 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-
-const response = {
-    author: {
-        name: "Pedro",
-        lastname: "Perez"
-    },
-    categories: ["muebles"],
-    items: [
-        {
-            id: "1",
-            title: "Cama 1 Plaza De Pino Macizo El Mejor Precio - Pinoshow",
-            price: {
-                currency: "ARS",
-                amount: "5000",
-                decimals: "50"
-            },
-            picture: "http://http2.mlstatic.com/D_705441-MLA31009634162_062019-I.jpg",
-            condition: "String",
-            free_shipping: "True"
-        },
-    ]
-}
+import useProductsData from '../hooks/useProductsData'
 
 const Header = () => {
     const [valueInput, setValueInput] = useState('');
+    const { setProducts } = useProductsData();
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(response);
-        axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=${valueInput}`)
+        requestProducts(valueInput)
+    }
+
+    const requestProducts = async (valueParam) => {
+        const { data } = await axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=${valueParam}`);
+        const customResponse = {
+            items: data.results.map(item => ({
+                id: item.id,
+                title: item.title,
+                price: {
+                    currency: item.currency_id,
+                    amount: item.price,
+                    decimals: "50"
+                },
+                picture: item.thumbnail,
+                condition: item.condition,
+                free_shipping: item.shipping.free_shipping,
+                location: item.address.city_name
+            })),
+            author:{
+                name: "Pedro",
+                lastname: "Perez"
+            },
+            categories: ["muebles"],
+        }
+        setProducts(customResponse);
     }
     return (
         <header>
@@ -42,7 +47,7 @@ const Header = () => {
                 name="search" 
                 value={valueInput} 
                 onChange={(e) => setValueInput(e.target.value)}/>
-                <i class="fas fa-search"></i>
+                <i className="fas fa-search"></i>
             </form>
         </header>
     )

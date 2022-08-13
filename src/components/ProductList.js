@@ -1,54 +1,26 @@
 import React from 'react'
 import Product from './Product'
+import useProductsData from '../hooks/useProductsData'
 
-const response ={
-    author: {
-        name: "Pedro",
-        lastname: "Perez"
-    },
-    categories: ["muebles"],
-    items: [
-        {
-            id: "1",
-            title: "Cama 1 Plaza De Pino Macizo El Mejor Precio - Pinoshow",
-            price: {
-                currency: "ARS",
-                amount: "5000",
-                decimals: "50"
-            },
-            picture: "http://http2.mlstatic.com/D_705441-MLA31009634162_062019-I.jpg",
-            condition: "String",
-            free_shipping: "True"
-        },
-        {
-            id: "1",
-            title: "Cama 1 Plaza De Pino Macizo El Mejor Precio - Pinoshow",
-            price: {
-                currency: "ARS",
-                amount: "5000",
-                decimals: "50"
-            },
-            picture: "http://http2.mlstatic.com/D_705441-MLA31009634162_062019-I.jpg",
-            condition: "String",
-            free_shipping: "True"
-        },
-    ]
-}
+const ProductList = () => {
+    const { getProducts } = useProductsData();
+    const productsData = getProducts();
 
-const ProductList = ({products}) => {
     return (
         <div className="main-container">
             <div className="product-list-container">
-                {response.items.map((product) => (
-                    <Product
-                    key={product.id}
-                    price={product.price.amount}
-                    name={product.title}
-                    currency={product.price.currency}
-                    location={"Capital Federal"}
-                    image={product.picture}
-                    />
-                ))}
+                {productsData.items ? 
+                    productsData.items.map((product) => (
+                        <Product
+                        key={product.id}
+                        price={product.price.amount}
+                        name={product.title}
+                        currency={product.price.currency}
+                        location={product.location}
+                        image={product.picture}
+                        />
+                    ))
+                : null}
             </div>
         </div>
     )

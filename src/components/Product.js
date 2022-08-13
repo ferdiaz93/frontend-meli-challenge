@@ -2,7 +2,7 @@ import React from 'react'
 
 const Product = ({price, name, currency, location, image}) => {
     return (
-        <arcticle className="product-container">
+        <article className="product-container">
             <div className="image-container">
                 <img src={image} alt=""/>
             </div>
@@ -13,7 +13,7 @@ const Product = ({price, name, currency, location, image}) => {
             <div className="extra-info">
                 <span>{location}</span>
             </div>
-        </arcticle>
+        </article>
     )
 }
 
