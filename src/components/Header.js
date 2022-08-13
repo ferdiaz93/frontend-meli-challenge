@@ -10,13 +10,13 @@ const response = {
     items: [
         {
             id: "1",
-            title: "Cama elastica",
+            title: "Cama 1 Plaza De Pino Macizo El Mejor Precio - Pinoshow",
             price: {
                 currency: "ARS",
                 amount: "5000",
                 decimals: "50"
             },
-            picture: "test",
+            picture: "http://http2.mlstatic.com/D_705441-MLA31009634162_062019-I.jpg",
             condition: "String",
             free_shipping: "True"
         },
@@ -28,7 +28,7 @@ const Header = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(response);
-        // axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=${valueInput}`)
+        axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=${valueInput}`)
     }
     return (
         <header>
