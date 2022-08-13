@@ -1,0 +1,28 @@
+header{
+    background-color: $yellow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 30px;
+    form{
+        position: relative;
+        input{
+            width: 300px;
+            padding: 10px 40px 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 3px;
+            &:focus{
+                outline: none;
+            }
+        }
+        i{
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            font-size: 20px;
+            color: $grey;
+            cursor: pointer;
+        }
+    }
+}
