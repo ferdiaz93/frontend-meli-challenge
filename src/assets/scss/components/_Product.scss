@@ -1,9 +1,9 @@
-.product-container{
+.product{
     display: flex;
     align-items: flex-start;
     column-gap: 30px;
     border-bottom: solid 1px $grey;
-    .image-container{
+    &__image-container{
         width: 300px;
         height: 200px;
         img{
@@ -11,13 +11,13 @@
             height: 100%;
         }
     }
-    .product-info{
+    &__product-info{
         padding: 10px 10px 20px 0px;
         h3{
             margin-top: 0px;
         }
     }
-    .extra-info{
+    &__extra-info{
         min-width: 100px;
         span{
             font-size: 12px;

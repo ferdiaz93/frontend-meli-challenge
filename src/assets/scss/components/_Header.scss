@@ -1,12 +1,12 @@
-header{
+.header{
     background-color: $yellow;
     display: flex;
     justify-content: center;
     align-items: center;
     column-gap: 30px;
-    form{
+    &__form{
         position: relative;
-        input{
+        &__input{
             width: 300px;
             padding: 10px 40px 10px 20px;
             font-size: 18px;

@@ -18,12 +18,13 @@ const Header = () => {
     }
 
     return (
-        <header>
-            <div className="logo-container">
+        <header className="header">
+            <div className="header__logo-container">
                 <h1>LOGO</h1>
             </div>
-            <form onSubmit={(e) => handleSubmit(e)}>
+            <form className="header__form" onSubmit={(e) => handleSubmit(e)}>
                 <input 
+                className="header__form__input"
                 type="text" 
                 placeholder="Nunca dejes de buscar"
                 name="search" 

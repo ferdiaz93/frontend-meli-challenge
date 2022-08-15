@@ -42,7 +42,7 @@ const ProductList = () => {
 
     return (
         <div className="main-container">
-            <div className="product-list-container">
+            <div className="product-list">
                 {productsData.items ? 
                     productsData.items.map((product) => (
                         <Product
