@@ -7,13 +7,16 @@
     &__form{
         position: relative;
         &__input{
-            width: 300px;
+            width: 150px;
             padding: 10px 40px 10px 20px;
             font-size: 18px;
             border: none;
             border-radius: 3px;
             &:focus{
                 outline: none;
+            }
+            @media (min-width: $screen-md) {
+                width: 300px;
             }
         }
         i{

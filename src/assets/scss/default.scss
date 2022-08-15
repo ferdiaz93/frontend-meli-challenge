@@ -6,5 +6,8 @@ body{
 }
 
 .main-container{
-    padding: 0px 200px;
+    padding: 0px 10px;
+    @media (min-width: $screen-md) {
+        padding: 0px 200px;
+    }
 }
