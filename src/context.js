@@ -4,7 +4,7 @@ const initialContext = {
     products: [],
 }
 
-const SearchContext = React.createContext(initialContext);
+const SearchContext = React.createContext([{}, () => {}]);
 
 const SearchProvider = ({children}) => {
     const [state, setState] = useState(initialContext);

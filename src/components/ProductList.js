@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react'
-import Product from './Product'
-import axios from 'axios'
-import useProductsData from '../hooks/useProductsData'
-import { useParams, useNavigate } from 'react-router-dom'
+import React, { useEffect } from 'react';
+import Product from './Product';
+import axios from 'axios';
+import useProductsData from '../hooks/useProductsData';
 
 const ProductList = () => {
     const { getProducts, setProducts} = useProductsData();
@@ -16,28 +15,9 @@ const ProductList = () => {
     },[])
 
     const requestProducts = async (valueParam) => {
-        const { data } = await axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=${valueParam}`);
-        const customResponse = {
-            items: data.results.map(item => ({
-                id: item.id,
-                title: item.title,
-                price: {
-                    currency: item.currency_id,
-                    amount: item.price,
-                    decimals: "50"
-                },
-                picture: item.thumbnail,
-                condition: item.condition,
-                free_shipping: item.shipping.free_shipping,
-                location: item.address.city_name
-            })),
-            author:{
-                name: "Pedro",
-                lastname: "Perez"
-            },
-            categories: ["muebles"],
-        }
-        setProducts(customResponse);
+        const { data } = await axios.get(`http://localhost:3001/api/items?q=${valueParam}`);
+        
+        setProducts(data);
     }
 
     return (
@@ -47,6 +27,7 @@ const ProductList = () => {
                     productsData.items.map((product) => (
                         <Product
                         key={product.id}
+                        productId={product.id}
                         price={product.price.amount}
                         name={product.title}
                         currency={product.price.currency}

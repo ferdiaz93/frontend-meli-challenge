@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Product = ({price, name, currency, location, image}) => {
+const Product = ({productId, price, name, currency, location, image}) => {
     return (
-        <article className="product">
+        <a className="product" href={`/items/${productId}`}>
             <div className="product__image-container">
                 <img src={image} alt=""/>
             </div>
@@ -13,7 +13,7 @@ const Product = ({price, name, currency, location, image}) => {
             <div className="product__location">
                 <span>{location}</span>
             </div>
-        </article>
+        </a>
     )
 }
 

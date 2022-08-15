@@ -1,8 +1,16 @@
 .product{
+    all: unset;
+    cursor: pointer;
     display: flex;
     align-items: flex-start;
     column-gap: 30px;
     border-bottom: solid 1px $grey;
+    text-decoration: none;
+    color: $black;
+    transition: color 0.3s ease;
+    &:hover{
+        color: $blue;
+    }
     &__image-container{
         width: 300px;
         height: 200px;
@@ -17,7 +25,7 @@
             margin-top: 0px;
         }
     }
-    &__extra-info{
+    &__location{
         min-width: 100px;
         span{
             font-size: 12px;
