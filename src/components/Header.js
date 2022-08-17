@@ -29,8 +29,8 @@ const Header = () => {
         <header className="header">
             <a className="header__logo-container" href='/'>
                 <picture>
-                    <source media="(min-width: 720px)" srcset={logo_desk}/>
-                    <img src={logo_mobile}/>
+                    <source media="(min-width: 992px)" srcSet={logo_desk}/>
+                    <img src={logo_mobile} alt="logo-mercadolibre"/>
                 </picture>
             </a>
             <form className="header__form" onSubmit={(e) => handleSubmit(e)}>
