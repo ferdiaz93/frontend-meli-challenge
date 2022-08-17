@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom";
+import logo_desk from '../assets/images/logo__large_plus.png'
+import logo_mobile from '../assets/images/logo__small.png'
 
 const Header = () => {
     const [valueInput, setValueInput] = useState('');
@@ -14,14 +16,23 @@ const Header = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        navigate(`/items?search=${valueInput}`);
+        search();
+    }
+    
+    const search = () => {
+        if(valueInput){
+            navigate(`/items?search=${valueInput}`);
+        }
     }
 
     return (
         <header className="header">
-            <div className="header__logo-container">
-                <h1>LOGO</h1>
-            </div>
+            <a className="header__logo-container" href='/'>
+                <picture>
+                    <source media="(min-width: 720px)" srcset={logo_desk}/>
+                    <img src={logo_mobile}/>
+                </picture>
+            </a>
             <form className="header__form" onSubmit={(e) => handleSubmit(e)}>
                 <input 
                 className="header__form__input"
@@ -30,7 +41,7 @@ const Header = () => {
                 name="search" 
                 value={valueInput} 
                 onChange={(e) => setValueInput(e.target.value)}/>
-                <i className="fas fa-search"></i>
+                <i className="fas fa-search" onClick={search}></i>
             </form>
         </header>
     )
