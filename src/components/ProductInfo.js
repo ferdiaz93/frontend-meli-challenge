@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import { CurrencyFormat } from '../utils'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom';
 
 const ProductInfo = () => {
     const { id } = useParams();
@@ -29,15 +29,19 @@ const ProductInfo = () => {
             {product ? 
                 <article className="product-info">
                     <div className="product-info__main-information">
-                        <div className="product-detail__image">
+                        <div className="product-info__main-information__image">
                             <img src={product.item.picture} alt=""/>
                         </div>
-                        <div className="product-detail__selling-data">
-                            <small className="product-detail__selling-data__details">Nuevo - 234 vendidos</small>
+                        <div className="product-info__main-information--desktop">
+                            <small className="product-info__selling-data__details">Nuevo - 234 vendidos</small>
                             <h1>{product.item.title}</h1>
-                            <h2>${product.item.price.amount}<small>{product.item.price.decimals}</small></h2>
+                            <h2 className="price">{CurrencyFormat(product.item.price.amount, product.item.price.currency)}<small>{product.item.price.decimals}</small></h2>
                             <button className="btn product-detail__selling-data__buy-button">Comprar</button>
                         </div>
+                    </div>
+                    <div className="product-info__main-information--mobile">
+                        <h2>{CurrencyFormat(product.item.price.amount, product.item.price.currency)}<small>{product.item.price.decimals}</small></h2>
+                        <button className="btn product-detail__selling-data__buy-button">Comprar</button>
                     </div>
                     <div className="product-info__description">
                         <h2>Descripción del producto</h2>

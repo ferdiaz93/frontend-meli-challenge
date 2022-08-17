@@ -11,3 +11,21 @@ body{
         padding: 0px 200px;
     }
 }
+
+.btn{
+    background-color: $blue;
+    color: $white;
+    border: none;
+    border-radius: 3px;
+    padding: 10px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    @media (min-width: $screen-md) {
+        width: unset;
+    }
+    &:hover{
+        background-color: $dark-blue;
+    }
+}
