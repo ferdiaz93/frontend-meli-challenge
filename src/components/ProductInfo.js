@@ -1,12 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 import { CurrencyFormat } from '../utils'
+import useProductsData from '../hooks/useProductsData';
 import axios from 'axios'
 
 const ProductInfo = () => {
+    const { getLoading, setLoading } = useProductsData();
+    const [product, setProduct] = useState(null);
     const { id } = useParams();
-    const [product, setProduct] = React.useState(null);
     const navigate = useNavigate()
+    const loading = getLoading()
 
     useEffect(() => {
         if(id) {
@@ -16,7 +19,7 @@ const ProductInfo = () => {
 
     const getProductInfo = async (id) => {
         try{
-            const { data: { author, item } } = await axios.get(`http://localhost:3001/api/items/${id}`);
+            const { data: { author, item } } = await axios.get(`${process.env.REACT_APP_API_URL}/api/items/${id}`);
             setProduct({author, item});
         } catch(error) {
             console.log(error);
@@ -26,7 +29,7 @@ const ProductInfo = () => {
 
     return (
         <section className="main-container">
-            {product ? 
+            {product && !loading ? 
                 <article className="product-info">
                     <div className="product-info__main-information">
                         <div className="product-info__main-information__image">
@@ -48,7 +51,7 @@ const ProductInfo = () => {
                         <p dangerouslySetInnerHTML={{ __html: product.item.description }}></p>
                     </div>
                 </article>
-            : null}
+            : <div class="spin"></div>}
         </section>
     )
 }

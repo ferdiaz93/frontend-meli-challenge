@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
 const initialContext = {
+    loading: false,
+    querySearch: "",
     products: [],
 }
 
