@@ -5,7 +5,7 @@ const Product = ({productId, price, name, currency, location, image, freeShippin
     return (
         <a className="product" href={`/items/${productId}`}>
             <div className="product__image-container">
-                <img src={image} alt={`img-${name}`}/>
+                <img src={image} alt={`${name}`}/>
             </div>
             <div className="product__info">
                 <div className="product__info__main">

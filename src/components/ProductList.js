@@ -25,7 +25,7 @@ const ProductList = () => {
     return (
         <div className="main-container">
             {loading ? 
-                <div class="spin"></div>
+                <div className="spin"></div>
             : 
                 <div className="product-list">
                     {productsData.items ? 

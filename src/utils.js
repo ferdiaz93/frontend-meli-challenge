@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const CurrencyFormat = (value, currency) => {
     if (!value) return "$ 0";
     const val = parseInt(value);

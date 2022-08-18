@@ -27,16 +27,26 @@ const ProductInfo = () => {
         }
     }
 
+    const traslate = (word) =>{
+        if(word === 'new'){
+            return 'Nuevo'
+        }
+        if(word === 'used'){
+            return 'Usado'
+        }
+        return word;
+    }
+
     return (
         <section className="main-container">
             {product && !loading ? 
                 <article className="product-info">
                     <div className="product-info__main-information">
                         <div className="product-info__main-information__image">
-                            <img src={product.item.picture} alt=""/>
+                            <img src={product.item.picture} alt={`${product.item.title}`}/>
                         </div>
                         <div className="product-info__main-information--desktop">
-                            <small className="product-info__selling-data__details">Nuevo - 234 vendidos</small>
+                            <small className="product-info__selling-data__details">{traslate(product.item.condition)} - {product.item.sold_quantity} vendidos</small>
                             <h1>{product.item.title}</h1>
                             <h2 className="price">{CurrencyFormat(product.item.price.amount, product.item.price.currency)}<small>{product.item.price.decimals}</small></h2>
                             <button className="btn product-detail__selling-data__buy-button">Comprar</button>
@@ -48,10 +58,10 @@ const ProductInfo = () => {
                     </div>
                     <div className="product-info__description">
                         <h2>Descripción del producto</h2>
-                        <p dangerouslySetInnerHTML={{ __html: product.item.description }}></p>
+                        <p>{product.item.description}</p>
                     </div>
                 </article>
-            : <div class="spin"></div>}
+            : <div className="spin"></div>}
         </section>
     )
 }

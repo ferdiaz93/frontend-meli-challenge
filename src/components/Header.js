@@ -12,7 +12,7 @@ const Header = () => {
     
     useEffect(() => {
         const params = new URLSearchParams(window.location.search)
-        if(params.get('search') !== null) {
+        if(params.get('search')) {
             setValueInput(params.get('search'));
             setQuerySearch(params.get('search'));
         }
@@ -20,7 +20,6 @@ const Header = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("TEST")
         search();
     }
     
