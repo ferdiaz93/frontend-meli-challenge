@@ -1,17 +1,22 @@
 import React from 'react'
+import { CurrencyFormat } from '../utils'
 
-const Product = ({price, name, currency, location, image}) => {
+const Product = ({productId, price, name, currency, location, image, freeShipping}) => {
     return (
-        <div className="product-list-container">
-            <div className="image-container">
-                <img src={image} alt=""/>
+        <a className="product" href={`/items/${productId}`}>
+            <div className="product__image-container">
+                <img src={image} alt={`img-${name}`}/>
             </div>
-            <div className="product-info">
-                <h3>{price}</h3>
-                <h3>{currency} {name}</h3>
-                <h3>{location}</h3>
+            <div className="product__info">
+                <div className="product__info__main">
+                    <h3>{CurrencyFormat(price, currency)} {freeShipping ? <span><i className="fas fa-truck"></i></span> : null}</h3>
+                    <h3>{name}</h3>
+                </div>
+                <div className="product__info__location">
+                    <span>{location}</span>
+                </div>
             </div>
-        </div>
+        </a>
     )
 }
 

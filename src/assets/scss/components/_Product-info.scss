@@ -1,0 +1,40 @@
+.product-info{
+    background-color: $white;
+    border-radius: 3px;
+    padding: 20px 30px;
+    &__main-information{
+        display: flex;
+        flex-direction: column-reverse;
+        @media (min-width: $screen-md) {
+            flex-direction: row;
+        }
+        &__image{
+            width: 100%;
+            img{
+                width: 100%;
+            }
+        }
+        &--desktop{
+            h1{
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+            .price, .btn {
+                display: none;
+            }
+            @media (min-width: $screen-md) {
+                h1{
+                    font-size: 24px;
+                }
+                .price, .btn {
+                    display: block;
+                }
+            }
+        }
+        &--mobile{
+            @media (min-width: $screen-md) {
+                display: none;
+            }
+        }
+    }
+}

@@ -1,0 +1,60 @@
+*{
+    font-family: "Proxima Nova";
+}
+body{
+    background-color: $grey;
+}
+
+.main-container{
+    padding: 0px 10px;
+    @media (min-width: $screen-md) {
+        padding: 0px 200px;
+    }
+}
+
+.btn{
+    background-color: $blue;
+    color: $white;
+    border: none;
+    border-radius: 3px;
+    padding: 10px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    @media (min-width: $screen-md) {
+        width: unset;
+    }
+    &:hover{
+        background-color: $dark-blue;
+    }
+}
+
+@keyframes spinner {
+    0% {
+        transform: translate3d(-50%, -50%, 0) rotate(0deg);
+    }
+    100% {
+        transform: translate3d(-50%, -50%, 0) rotate(360deg);
+    }
+}
+.spin::before {
+    animation: 1.5s linear infinite spinner;
+    animation-play-state: inherit;
+    border: solid 5px #cfd0d1;
+    border-bottom-color: #1c87c9;
+    border-radius: 50%;
+    content: "";
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    will-change: transform;
+}
+
+.initial-message{
+    text-align: center;
+    color: $dark-grey;
+}

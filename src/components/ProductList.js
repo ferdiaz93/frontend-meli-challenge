@@ -1,53 +1,49 @@
-import React from 'react'
-import Product from './Product'
+import React, { useEffect } from 'react';
+import Product from './Product';
+import axios from 'axios';
+import useProductsData from '../hooks/useProductsData';
 
-const response = {
-    author: {
-        name: "Pedro",
-        lastname: "Perez"
-    },
-    categories: ["muebles"],
-    items: [
-        {
-            id: "1",
-            title: "Cama elastica",
-            price: {
-                currency: "ARS",
-                amount: "5000",
-                decimals: "50"
-            },
-            picture: "test",
-            condition: "String",
-            free_shipping: "True"
-        },
-        {
-            id: "2",
-            title: "Cama de agua",
-            price: {
-                currency: "ARS",
-                amount: "5000",
-                decimals: "50"
-            },
-            picture: "test",
-            condition: "String",
-            free_shipping: "True"
-        },
-    ]
-}
+const ProductList = () => {
+    const { getProducts, setProducts, getQuerySearch, getLoading, setLoading } = useProductsData();
+    const productsData = getProducts();
+    const querySearch = getQuerySearch();
+    const loading = getLoading();
+    
+    useEffect(() => {
+        if(querySearch) {
+            requestProducts(querySearch);
+        }
+    },[querySearch])
 
-const ProductList = ({products}) => {
+    const requestProducts = async (valueParam) => {
+        setLoading(true)
+        const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/api/items?q=${valueParam}`);
+        setProducts(data);
+        setLoading(false)
+    }
+
     return (
-        <div className="product-list-container">
-            {response.items.map((product) => (
-                <Product
-                key={product.id}
-                price={product.price.amount}
-                name={product.title}
-                currency={product.price.currency}
-                location={"Capital Federal"}
-                image={product.picture}
-                />
-            ))}
+        <div className="main-container">
+            {loading ? 
+                <div class="spin"></div>
+            : 
+                <div className="product-list">
+                    {productsData.items ? 
+                        productsData.items.map((product) => (
+                            <Product
+                            key={product.id}
+                            productId={product.id}
+                            price={product.price.amount}
+                            name={product.title}
+                            currency={product.price.currency}
+                            location={product.location}
+                            image={product.picture}
+                            freeShipping={product.free_shipping}
+                            />
+                        ))
+                    : null}
+                </div>
+            }
         </div>
     )
 }
