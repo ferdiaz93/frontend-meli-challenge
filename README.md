@@ -8,7 +8,7 @@ MELI Challenge
 To run this project, you will need to add the following environment variable to your .env file.
 You need run the following app https://github.com/ferdiaz93/back-meli-challenge
 ```
-REACT_APP_API_URL=http://localhost:3001
+REACT_APP_API_URL=http://localhost:3030
 ```
 
 
