@@ -11,7 +11,7 @@ function App() {
         <div className="App">
             <Header/>
               <Routes>
-                <Route exact path="/" element={<h1>SIN RESULTADOS</h1>}/>
+                <Route exact path="/" element={<h3 className="initial-message">Realizar una búsqueda</h3>}/>
                 <Route path="/items" element={<ProductList/>}/>
                 <Route path="/items/:id" element={<ProductInfo/>}/>
               </Routes>

@@ -53,3 +53,8 @@ body{
     transform: translate3d(-50%, -50%, 0);
     will-change: transform;
 }
+
+.initial-message{
+    text-align: center;
+    color: $dark-grey;
+}
